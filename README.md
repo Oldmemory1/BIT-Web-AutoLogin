@@ -38,7 +38,9 @@ BIT-Web-AutoLogin/
 ### 2. 启动自动登录
 
 ```powershell
-# 直接运行
+python -m venv venv
+./venv/Scripts/activate.ps1
+pip install -r requirements.txt
 ./venv/Scripts/python.exe auto_login.py
 
 # 或使用 task
