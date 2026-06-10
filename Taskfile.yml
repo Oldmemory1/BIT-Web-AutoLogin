@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+vars:
+  PY: ./venv/Scripts/python.exe
+
+tasks:
+  default:
+    desc: 启动自动登录监控 (每30秒检测)
+    cmds:
+      - '{{.PY}} auto_login.py'
+
+  status:
+    desc: 检查当前网络登录状态
+    cmds:
+      - '{{.PY}} helper.py status'
+
+  status-json:
+    desc: 以 JSON 格式获取网络状态
+    cmds:
+      - '{{.PY}} helper.py status-json'
+
+  login:
+    desc: 使用 settings.json 凭据登录
+    cmds:
+      - '{{.PY}} helper.py login'
+
+  login-verbose:
+    desc: 登录并显示详细 API 响应
+    cmds:
+      - '{{.PY}} helper.py login -v'
+
+  logout:
+    desc: 使用 settings.json 凭据登出
+    cmds:
+      - '{{.PY}} helper.py logout'
+
+  test:
+    desc: 完整测试流程 (状态 → 登出 → 状态 → 登录 → 状态)
+    cmds:
+      - '{{.PY}} helper.py test'
